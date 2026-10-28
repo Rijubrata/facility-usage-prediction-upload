@@ -13,27 +13,27 @@ evaluation on a chronologically later holdout, and a spreadsheet and HTML table 
 
 **Holdout results** (Nov–Dec 2025, 3,843 bookings, never used for fitting or tuning):
 
-| | Model | Habit baseline |
-|---|---|---|
-| Facility accuracy (top-3) | 57.8% (86.4%) | 57.9% (76.9%) |
-| Usage day – exact date | 39.2% | 23.7% |
-| Usage hour – exact hour (±1 h) | 47.4% (71.9%) | 46.8% (71.7%) |
-| Nudge within ±60 min of actual booking | 35.0% | 18.9% |
-| **Mean output accuracy (avg "x of 4" / 4)** | **44.8%** | 36.8% |
-| All 4 outputs correct | 13.5% | 8.0% |
+|                                             | Model         | Habit baseline |
+| ------------------------------------------- | ------------- | -------------- |
+| Facility accuracy (top-3)                   | 57.8% (86.4%) | 57.9% (76.9%)  |
+| Usage day – exact date                      | 39.2%         | 23.7%          |
+| Usage hour – exact hour (±1 h)              | 47.4% (71.9%) | 46.8% (71.7%)  |
+| Nudge within ±60 min of actual booking      | 35.0%         | 18.9%          |
+| **Mean output accuracy (avg "x of 4" / 4)** | **44.8%**     | 36.8%          |
+| All 4 outputs correct                       | 13.5%         | 8.0%           |
 
 ## Deliverables
 
-| Deliverable | Location |
-|---|---|
-| 01 Dataset | `data/bookings.csv` (+ `facilities.csv`, `residents.csv`) |
-| 01 Runnable prototype | `fup/` package, `run_all.sh` |
-| Model artifact | `models/chain_model.joblib`, `models/training_metadata.json` |
-| 02 Technical documentation | [`docs/TECHNICAL_DOCUMENTATION.md`](docs/TECHNICAL_DOCUMENTATION.md) |
+| Deliverable                        | Location                                                                                              |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 01 Dataset                         | `data/bookings.csv` (+ `facilities.csv`, `residents.csv`)                                             |
+| 01 Runnable prototype              | `fup/` package, `run_all.sh`                                                                          |
+| Model artifact                     | `models/chain_model.joblib`, `models/training_metadata.json`                                          |
+| 02 Technical documentation         | [`docs/TECHNICAL_DOCUMENTATION.md`](docs/TECHNICAL_DOCUMENTATION.md)                                  |
 | 03 Prediction review (spreadsheet) | `reports/prediction_review.xlsx`. Sheets: Summary · Predictions · Error analysis · Facility confusion |
-| 03 Prediction review (UI table) | `reports/prediction_review.html`. Open in any browser; works offline, with search and filter. |
-| Flat predictions / metrics | `reports/test_predictions.csv`, `reports/metrics.json` |
-| Live next-booking predictions | `reports/next_booking_predictions.csv` |
+| 03 Prediction review (UI table)    | `reports/prediction_review.html`. Open in any browser; works offline, with search and filter.         |
+| Flat predictions / metrics         | `reports/test_predictions.csv`, `reports/metrics.json`                                                |
+| Live next-booking predictions      | `reports/next_booking_predictions.csv`                                                                |
 
 ## Quick start
 
@@ -58,24 +58,13 @@ export PYTHONPATH=.
 
 Optional flags:
 
-* `python -m fup.train --no-tune` skips the grid search and finishes in about 1.5 min.
-* `python -m fup.predict --resident R-104 --as-of "2025-11-15 12:00"` makes a point-in-time prediction
+- `python -m fup.train --no-tune` skips the grid search and finishes in about 1.5 min.
+- `python -m fup.predict --resident R-104 --as-of "2025-11-15 12:00"` makes a point-in-time prediction
   for one resident, using only bookings created up to that moment.
 
 The data, model and reports are included. A reviewer can open
 `reports/prediction_review.xlsx` or `.html` straight away, or re-run everything with `./run_all.sh`,
 which reproduces them exactly.
-
-## Drive upload and GitHub
-
-Keep the source code, `requirements.txt`, data, models, reports and documentation together.
-The upload copy excludes `.venv/`, Python and pytest caches, macOS metadata and local Git
-history. After downloading and extracting it, follow the quick start above to recreate the
-environment. `./run_all.sh` can also create the environment and install dependencies automatically;
-the initial dependency installation requires internet access.
-
-The `.gitignore` excludes local environments, caches and `.env` secrets from future Git commits.
-To publish the extracted upload copy to GitHub later, run:
 
 ```bash
 git init -b main
@@ -95,9 +84,9 @@ bookings.csv ──► point-in-time features at t0 (the moment the previous boo
       P(f|hist)          P(d|hist,f)          P(h|hist,f,d)    median booking minute → nudge
 ```
 
-* **Split**: train = targets booked before 1 Sep 2025 · validation (tuning only) = Sep–Oct ·
+- **Split**: train = targets booked before 1 Sep 2025 · validation (tuning only) = Sep–Oct ·
   **test = Nov–Dec 2025**. After tuning, the model is refit on train + validation.
-* **Match rules**: facility exact · day = exact calendar date · hour = exact start hour ·
+- **Match rules**: facility exact · day = exact calendar date · hour = exact start hour ·
   nudge = within ±60 min of when the resident actually booked.
 
 See the technical documentation for features, leakage controls, the alternatives considered,
