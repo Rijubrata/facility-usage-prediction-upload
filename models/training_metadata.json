@@ -1,0 +1,176 @@
+{
+  "trained_on": "target bookings created before 2025-11-01",
+  "n_train_targets": 21613,
+  "split": {
+    "train_end": "2025-09-01",
+    "val_end": "2025-11-01",
+    "test_end": "2026-01-01"
+  },
+  "params": {
+    "facility": {
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0
+    },
+    "day": {
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0
+    },
+    "hour": {
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0
+    },
+    "nudge": {
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0
+    }
+  },
+  "decode": "greedy",
+  "seed": 42,
+  "data_sha256": "b24a95caae2c2ab2416793e69fd4933e5596b8e0d9168bd9a6b762bda7c65b55",
+  "sklearn": "1.9.1",
+  "val_metrics": {
+    "n": 4500.0,
+    "facility_acc": 0.6011,
+    "facility_top3": 0.8749,
+    "facility_macro_f1": 0.3237,
+    "facility_logloss": 1.1856,
+    "day_acc": 0.4218,
+    "day_within1": 0.582,
+    "day_mae": 3.1142,
+    "hour_acc": 0.4696,
+    "hour_within1": 0.7242,
+    "hour_mae": 1.714,
+    "nudge_within60": 0.3567,
+    "nudge_within180": 0.42,
+    "nudge_mae_h": 64.3484,
+    "nudge_median_ae_h": 18.8417,
+    "nudge_before_booking": 0.6189,
+    "mean_outputs_matched": 1.8491,
+    "mean_output_accuracy": 0.4623,
+    "all4_match": 0.1476,
+    "fac_day_hour_match": 0.1978,
+    "usage_slot_within2h": 0.2598
+  },
+  "tuning_log": [
+    {
+      "stage": "facility",
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.5984
+    },
+    {
+      "stage": "facility",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.6011
+    },
+    {
+      "stage": "facility",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "l2_regularization": 1.0,
+      "val_score": 0.592
+    },
+    {
+      "stage": "day",
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.4604
+    },
+    {
+      "stage": "day",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.4609
+    },
+    {
+      "stage": "day",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "l2_regularization": 1.0,
+      "val_score": 0.4604
+    },
+    {
+      "stage": "hour",
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.6858
+    },
+    {
+      "stage": "hour",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.6916
+    },
+    {
+      "stage": "hour",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "l2_regularization": 1.0,
+      "val_score": 0.6904
+    },
+    {
+      "stage": "nudge",
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.6009
+    },
+    {
+      "stage": "nudge",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "val_score": 0.6131
+    },
+    {
+      "stage": "nudge",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "l2_regularization": 1.0,
+      "val_score": 0.6031
+    }
+  ]
+}

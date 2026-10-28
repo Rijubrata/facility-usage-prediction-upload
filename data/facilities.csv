@@ -1,0 +1,9 @@
+facility_id,name,label,open_hour,last_start_hour,capacity_per_slot,slot_minutes
+F01,Gym,Gym,5,22,25,60
+F02,Swimming Pool,Pool,6,20,15,60
+F03,Badminton Court,Badminton,6,22,2,60
+F04,Tennis Court,Tennis,6,21,1,60
+F05,Squash Court,Squash,6,22,1,60
+F06,Table Tennis Room,Table Tennis,7,22,2,60
+F07,Multipurpose Hall,MP Hall,6,21,1,60
+F08,Clubhouse Party Hall,Clubhouse,10,20,1,180
